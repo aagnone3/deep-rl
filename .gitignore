@@ -1,3 +1,10 @@
+# aagnone
+bak/
+*.zip
+Banana_Linux*
+Reacher_Linux*
+Tennis_Linux*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
