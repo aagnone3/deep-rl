@@ -10,15 +10,25 @@ Unlike Deep Q learning, policy-based methods make no attempt to directly estimat
 Note: While there may be more hyperparameters than those listed below, these parameters are those that are of the utmost interest and effect on learning.
 
 *Epsilon-greediness*: epsilon: 1->0.005, iteratively multiplied by 0.995 each episode
+
 *Moving average rewards*: last 100 rewards tracked for performance measurement
+
 *Memory replay buffer*: 1,000,000 experience tuples
+
 *Memory replay batch size*: 512 experience tuples
+
 *Discount factor*: 0.99
+
 *Network weights soft update ratio*: 0.01 of local network weights used in target network
+
 *Network learning rate*: 1e-3
+
 *Episodes per learning update*: 1
+
 *Experience tuples re-visited per learning update*: 1
+
 *Ornstein-Uhlenbeck sigma*: 0.2
+
 *Ornstein-Uhlenbeck theta*: 0.15
 
 ### Neural Network Architecture(s)
@@ -41,7 +51,7 @@ Critic(
 )
 
 ## Results
-![rewards][rewards.png]
+![rewards](rewards.png)
 
 ## Future Work
 - Employ NAS methods to find improved neural network architectures
