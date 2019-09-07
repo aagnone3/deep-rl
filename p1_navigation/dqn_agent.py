@@ -44,7 +44,7 @@ class Agent():
         self.optimizer = optim.Adam(self.qnetwork_local.parameters(), lr=LR)
         self.mode = mode
         print('Q Network')
-        print(summary(self.qnetwork_local, (state_size, )))
+        print(self.qnetwork_local)
 
         # Replay memory
         self.memory = ReplayBuffer(action_size, BUFFER_SIZE, BATCH_SIZE, seed)
