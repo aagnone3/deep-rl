@@ -9,34 +9,37 @@ This solution employs the Deep Q learning algorithm, which employs a neural netw
 Note: While there may be more hyperparameters than those listed below, these parameters are those that are of the utmost interest and effect on learning.
 
 *Epsilon-greediness*: epsilon: 1->0.005, iteratively multiplied by 0.995 each episode
+
 *Moving average rewards*: last 100 rewards tracked for performance measurement
+
 *Memory replay buffer*: 100,000 experience tuples
+
 *Memory replay batch size*: 64 experience tuples
+
 *Discount factor*: 0.99
+
 *Network weights soft update ratio*: 0.001 of local network weights used in target network
+
 *Network learning rate*: 5e-4
+
 *Episodes per learning update*: 4
 
 ### Neural Network Architecture(s)
-----------------------------------------------------------------
-        Layer (type)               Output Shape         Param #
-================================================================
-            Conv1d-1               [-1, 32, 35]             128
-         MaxPool1d-2               [-1, 32, 18]               0
-       BatchNorm1d-3               [-1, 32, 18]              64
-            Conv1d-4               [-1, 16, 18]           1,552
-         MaxPool1d-5                [-1, 16, 9]               0
-       BatchNorm1d-6                [-1, 16, 9]              32
-            Linear-7                   [-1, 64]           9,280
-            Linear-8                    [-1, 4]             260
-================================================================
-Total params: 11,316
-Trainable params: 11,316
-Non-trainable params: 0
-----------------------------------------------------------------
+```bash
+QNetwork(
+  (conv1): Conv1d(1, 32, kernel_size=(3,), stride=(1,))
+  (pool1): MaxPool1d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  (bn1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (conv2): Conv1d(32, 16, kernel_size=(3,), stride=(1,), padding=(1,))
+  (pool2): MaxPool1d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  (bn2): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (fc1): Linear(in_features=144, out_features=64, bias=True)
+  (fc2): Linear(in_features=64, out_features=4, bias=True)
+)
+```
 
 ## Results
-![rewards][rewards.png]
+![rewards](rewards.png)
 
 ## Future Work
 - Use various priority-defined sampling distributions over the memory replay buffer. A simple one is presented in the paper, but there is a lot of other potential for estimating the importance of experience tuples.
