@@ -67,6 +67,6 @@ Critic(
 
 ## Future Work
 - Employ NAS methods to find improved neural network architectures
-- Parallelize training
+- Utilize parallelization to gather experience tuples in a distributed fashion
 - Use various priority-defined sampling distributions over the memory replay buffer. A simple one is presented in the paper, but there is a lot of other potential for estimating the importance of experience tuples.
 - Explore other mechanisms by which a 'target network' or 'teacher network' can lead and constrain the higher-variance local network.
