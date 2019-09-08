@@ -34,21 +34,25 @@ Note: While there may be more hyperparameters than those listed below, these par
 ### Neural Network Architecture(s)
 The actor and critic networks are identical for both agents in the game.
 
-#### Actor Networks
+#### Actor Network
+```bash
 Actor(
   (fc1): Linear(in_features=24, out_features=400, bias=True)
   (bn1): BatchNorm1d(400, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
   (fc2): Linear(in_features=400, out_features=300, bias=True)
   (fc3): Linear(in_features=300, out_features=2, bias=True)
 )
+```
 
 #### Critic Network
+```bash
 Critic(
   (fcs1): Linear(in_features=24, out_features=400, bias=True)
   (bn1): BatchNorm1d(400, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
   (fc2): Linear(in_features=402, out_features=300, bias=True)
   (fc3): Linear(in_features=300, out_features=1, bias=True)
 )
+```
 
 ## Results
 ![rewards](rewards.png)
