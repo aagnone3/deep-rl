@@ -30,14 +30,9 @@ RUN cd openai-baselines && \
     pip3 install .
 
 # install etc
-RUN ln -s /usr/bin/python3 /usr/bin/python && \
-    pip3 install \
-        jupyterlab \
-        ipykernel \
-        seaborn \
-        matplotlib \
-        pandas \
-        torchsummary
+RUN ln -s /usr/bin/python3 /usr/bin/python
+COPY requirements.txt /tmp/requirements.txt
+RUN pip3 install -r /tmp/requirements.txt
 
 # container entry point
 CMD ["/bin/bash"]

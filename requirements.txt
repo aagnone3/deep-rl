@@ -1,0 +1,6 @@
+jupyterlab
+ipykernel
+seaborn
+matplotlib
+pandas
+torchsummary

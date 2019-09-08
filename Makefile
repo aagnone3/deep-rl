@@ -3,7 +3,6 @@ DIST_DIR ?= ${PWD}/dist
 BUILD_DIR ?= ${PWD}/build
 IMAGE ?= aagnone/deep-rl
 TAG ?= latest
-DOCKER ?= nvidia-docker
 SCRIPT ?= /bin/bash
 
 JUPYTER_PORT ?= 8893
@@ -13,10 +12,14 @@ USER := drlnd
 GROUP ?= drlnd
 USER_ID ?= 1000
 GROUP_ID ?= 1000
-# --build-arg group=$(shell id -g -n ${USER}) \
-# --build-arg user=${USER} \
-# --build-arg user_id=$(shell id -u) \
-# --build-arg group_id=$(shell id -g) \
+
+_PATH_DOCKER := $(shell which docker)
+_PATH_NVIDIA_DOCKER := $(shell which nvidia-docker)
+ifdef _PATH_NVIDIA_DOCKER
+	DOCKER := $(_PATH_NVIDIA_DOCKER)
+else
+	DOCKER := $(_PATH_DOCKER)
+endif
 
 .PHONY: help
 help: ## Display help

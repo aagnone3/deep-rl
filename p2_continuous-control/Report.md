@@ -3,8 +3,17 @@
 The following details my solution to training a reinforcement learning agent to perform continuous control using a policy-network-based actor-critic method (DDPG).
 
 ## Learning Algorithm
-This solution employs the DDPG algorithm, which employs a neural network to estimate the optimal action to take for a given state in the environment.
-Unlike Deep Q learning, policy-based methods make no attempt to directly estimate the action-value of particular states; while it can be said that such valuation exists latently within the network, the output of the network is simply the action to take.
+This solution uses the DDPG algorithm, which employs two neural networks (an actor and a critic) to learn to take optimal actions in the environment.
+One main characterization of a reinforcement learning algorithm is whether it is value-based or policy-based. Value-based methods estimate only action-values (i.e. the Q function), whereas policy-based methods estimate only optimal actions (i.e. the policy function). Both of these approaches each have their pros and cons, so it does not make sense to simply choose one over the other for a given situation. DDPG follows this insight, and combines both approaches into learning. The
+algorithm is one of a general class of algorithms known as "actor-crtic" algorithms.
+The (policy-based) actor network focuses on "learning through doing" and continually learns to estimate the _maximizer_ of the action values over the next state (similar to Q learning). This kind of learning is typically associated with higher error due to variance.
+The (value-based) critic network focuses on "learning through careful projection and review" and continually learns to estimate the optimal action-value (Q) function itself, as opposed to only the maximizer. Because of the stronger assumptions imposed, this kind of learning is typically associated with higher error due to bias.
+In this framework, the bias of the critic is used to reduce the error due to variance of the actor.
+This is done by the critic acting as the _baseline of the actor_.
+By combining the benefits of both value-based and policy-based learning, actor-critic methods enjoy the following advantages:
+- learning is *faster* then policy-based methods
+- learning finds *more consistent* methods than policy-based methods
+- learning finds *better* methods than value-based methods
 
 ### Hyperparameters
 Note: While there may be more hyperparameters than those listed below, these parameters are those that are of the utmost interest and effect on learning.
